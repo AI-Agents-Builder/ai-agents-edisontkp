@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { CalendlyButton } from "@/components/CalendlyButton"
 import { siteConfig } from "@/config/content"
 import { ArrowRight, Mail, Send } from "lucide-react"
 import { useState } from "react"
@@ -35,13 +36,15 @@ export function Contact() {
           </div>
           
           <div className="mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button size="lg" className="gap-2">
+            <CalendlyButton size="lg" className="gap-2">
               Book a Discovery Call
               <ArrowRight className="h-4 w-4" />
-            </Button>
-            <Button size="lg" variant="outline" className="gap-2">
-              <Mail className="h-4 w-4" />
-              Email Edison
+            </CalendlyButton>
+            <Button size="lg" variant="outline" className="gap-2" asChild>
+              <a href={`mailto:${siteConfig.email}`}>
+                <Mail className="h-4 w-4" />
+                Email Edison
+              </a>
             </Button>
           </div>
           
