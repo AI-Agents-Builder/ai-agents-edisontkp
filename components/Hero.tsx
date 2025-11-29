@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { CalendlyButton } from "@/components/CalendlyButton"
 import { heroContent, siteConfig } from "@/config/content"
 import { Check, ArrowRight, Download } from "lucide-react"
 
@@ -30,10 +31,10 @@ export function Hero() {
           </ul>
           
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button size="lg" className="gap-2">
+            <CalendlyButton size="lg" className="gap-2">
               {heroContent.primaryCta}
               <ArrowRight className="h-4 w-4" />
-            </Button>
+            </CalendlyButton>
             <Button size="lg" variant="outline" className="gap-2">
               <Download className="h-4 w-4" />
               {heroContent.secondaryCta}

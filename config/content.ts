@@ -51,7 +51,8 @@ export const packages = [
     id: "lite",
     tier: "Starter",
     name: "AI Agent Lite",
-    price: "From RM3,500",
+    price: "From $750",
+    priceAmount: 750,
     forWho: "Individuals, freelancers, small teams",
     includes: [
       "1 custom agent (support/sales/admin)",
@@ -66,7 +67,8 @@ export const packages = [
     id: "pro-starter",
     tier: "Starter",
     name: "AI Agent Pro Starter",
-    price: "From RM8,000",
+    price: "From $1,700",
+    priceAmount: 1700,
     forWho: "Growing teams and SMEs",
     includes: [
       "1 advanced agent with multi-step logic",
@@ -81,7 +83,8 @@ export const packages = [
     id: "business-auto",
     tier: "Business",
     name: "Business Automation Agent Pack",
-    price: "From RM12,000",
+    price: "From $2,600",
+    priceAmount: 2600,
     forWho: "SMEs, property management, service businesses",
     includes: [
       "2–3 agents (Ops, Support, Sales combo)",
@@ -97,7 +100,8 @@ export const packages = [
     id: "sales-cs",
     tier: "Business",
     name: "Sales & Customer Service Agent Bundle",
-    price: "From RM18,000",
+    price: "From $3,900",
+    priceAmount: 3900,
     forWho: "SMEs with sales-focused operations",
     includes: [
       "Sales qualification agent",
@@ -113,7 +117,8 @@ export const packages = [
     id: "enterprise",
     tier: "Enterprise",
     name: "Enterprise Agent Suite",
-    price: "From RM35,000",
+    price: "From $7,500",
+    priceAmount: 7500,
     forWho: "Corporates and larger teams",
     includes: [
       "5–7 agents across departments",
@@ -129,7 +134,8 @@ export const packages = [
     id: "pilot",
     tier: "Special",
     name: "AI Agent Pilot",
-    price: "RM6,800",
+    price: "$1,500",
+    priceAmount: 1500,
     duration: "2–3 weeks",
     forWho: "Anyone wanting to start with a focused proof-of-concept",
     includes: [
@@ -143,6 +149,58 @@ export const packages = [
     badge: "Most Popular"
   }
 ]
+
+export const calendlyConfig = {
+  url: "https://calendly.com/edisontkp/discovery-call",
+  text: "Book a Discovery Call"
+}
+
+export const termsAndConditions = {
+  title: "Terms and Conditions",
+  lastUpdated: "2024-01-15",
+  sections: [
+    {
+      title: "1. Agreement to Terms",
+      content: "By purchasing our AI agent development services, you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not proceed with the purchase."
+    },
+    {
+      title: "2. Services",
+      content: "EdisonTKP provides custom AI agent development services as described in the selected package. The scope of work will be finalized during the discovery call and documented in a project proposal."
+    },
+    {
+      title: "3. Payment Terms",
+      content: "All prices are in USD. Payment is processed securely via Stripe. A 50% deposit is required to commence work, with the remaining balance due upon project completion. All payments are non-refundable once work has commenced."
+    },
+    {
+      title: "4. Discovery Call",
+      content: "After payment, you will be redirected to schedule a discovery call via Calendly. This call is essential for understanding your requirements and defining the project scope."
+    },
+    {
+      title: "5. Deliverables & Timeline",
+      content: "Project timelines are estimates and may vary based on complexity and client responsiveness. Delays caused by client feedback or requirement changes may extend the timeline."
+    },
+    {
+      title: "6. Intellectual Property",
+      content: "Upon full payment, you will own the custom AI agent(s) developed for your project. EdisonTKP retains the right to use non-proprietary code, methodologies, and learnings for future projects."
+    },
+    {
+      title: "7. Confidentiality",
+      content: "Both parties agree to maintain confidentiality of proprietary information shared during the project. Customer data will not be shared with third parties."
+    },
+    {
+      title: "8. Support & Maintenance",
+      content: "Post-launch support is included as specified in your package. Additional support or maintenance beyond the included period will be billed separately."
+    },
+    {
+      title: "9. Limitation of Liability",
+      content: "EdisonTKP's liability is limited to the amount paid for services. We are not liable for indirect, incidental, or consequential damages."
+    },
+    {
+      title: "10. Modifications",
+      content: "These terms may be updated periodically. The current version will always be available on our website. Continued use of our services constitutes acceptance of any changes."
+    }
+  ]
+}
 
 export const howItWorksSteps = [
   {

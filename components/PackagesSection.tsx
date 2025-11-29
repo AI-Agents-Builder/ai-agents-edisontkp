@@ -2,7 +2,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { packages } from "@/config/content"
-import { Check, MessageCircle, Star } from "lucide-react"
+import { PaymentModal } from "@/components/PaymentModal"
+import { Check, CreditCard, Star } from "lucide-react"
 
 export function PackagesSection() {
   return (
@@ -13,7 +14,7 @@ export function PackagesSection() {
             Service Packages
           </h2>
           <p className="mb-12 text-lg text-muted-foreground">
-            Choose the package that fits your needs. All packages include custom development, integrations, and post-launch support.
+            Choose the package that fits your needs. All packages include custom development, integrations, and post-launch support. Prices in USD.
           </p>
         </div>
         
@@ -64,13 +65,19 @@ export function PackagesSection() {
               </CardContent>
               
               <CardFooter>
-                <Button 
-                  className="w-full gap-2" 
-                  variant={pkg.highlighted ? "default" : "outline"}
+                <PaymentModal
+                  packageName={pkg.name}
+                  packagePrice={pkg.price}
+                  priceAmount={pkg.priceAmount}
                 >
-                  <MessageCircle className="h-4 w-4" />
-                  Talk to Edison
-                </Button>
+                  <Button 
+                    className="w-full gap-2" 
+                    variant={pkg.highlighted ? "default" : "outline"}
+                  >
+                    <CreditCard className="h-4 w-4" />
+                    Get Started
+                  </Button>
+                </PaymentModal>
               </CardFooter>
             </Card>
           ))}
