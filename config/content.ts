@@ -151,8 +151,22 @@ export const packages = [
 ]
 
 export const calendlyConfig = {
-  url: "https://calendly.com/edisontkp/discovery-call",
+  url: process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/edisontkp/discovery-call",
   text: "Book a Discovery Call"
+}
+
+export const stripeConfig = {
+  publishableKey: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "",
+  priceIds: {
+    lite: process.env.NEXT_PUBLIC_STRIPE_PRICE_LITE || "",
+    proStarter: process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO_STARTER || "",
+    businessAuto: process.env.NEXT_PUBLIC_STRIPE_PRICE_BUSINESS_AUTO || "",
+    salesCs: process.env.NEXT_PUBLIC_STRIPE_PRICE_SALES_CS || "",
+    enterprise: process.env.NEXT_PUBLIC_STRIPE_PRICE_ENTERPRISE || "",
+    pilot: process.env.NEXT_PUBLIC_STRIPE_PRICE_PILOT || "",
+  },
+  successUrl: `${process.env.NEXT_PUBLIC_SITE_URL || ""}/success`,
+  cancelUrl: `${process.env.NEXT_PUBLIC_SITE_URL || ""}/`,
 }
 
 export const termsAndConditions = {

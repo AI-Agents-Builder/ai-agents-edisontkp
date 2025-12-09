@@ -66,6 +66,7 @@ export function PackagesSection() {
               
               <CardFooter>
                 <PaymentModal
+                  packageId={pkg.id}
                   packageName={pkg.name}
                   packagePrice={pkg.price}
                   priceAmount={pkg.priceAmount}

@@ -13,33 +13,49 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { termsAndConditions, calendlyConfig } from "@/config/content"
-import { CreditCard, Calendar, FileText, ExternalLink } from "lucide-react"
+import { CreditCard, Calendar, FileText, ExternalLink, AlertCircle } from "lucide-react"
+import { createCheckoutSession, getPriceIdForPackage } from "@/lib/stripe"
 
 interface PaymentModalProps {
+  packageId: string
   packageName: string
   packagePrice: string
   priceAmount: number
   children: React.ReactNode
 }
 
-export function PaymentModal({ packageName, packagePrice, priceAmount, children }: PaymentModalProps) {
+export function PaymentModal({ packageId, packageName, packagePrice, priceAmount, children }: PaymentModalProps) {
   const [step, setStep] = useState<"terms" | "payment" | "success">("terms")
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handlePayment = async () => {
     if (!termsAccepted) return
     
     setIsProcessing(true)
+    setError(null)
     
-    // Simulate payment processing
-    // In production, this would integrate with Stripe's payment flow
-    // using redirectToCheckout or Stripe Elements
-    setTimeout(() => {
-      setStep("success")
+    try {
+      const priceId = getPriceIdForPackage(packageId)
+      
+      if (!priceId) {
+        throw new Error("Price ID not configured for this package")
+      }
+
+      await createCheckoutSession({
+        priceId,
+        packageName,
+      })
+      
+      // If we reach here without redirecting, show success (for demo/testing)
+      // In production, user will be redirected to Stripe Checkout
+    } catch (err) {
+      console.error('Payment error:', err)
+      setError(err instanceof Error ? err.message : 'Payment failed. Please try again.')
       setIsProcessing(false)
-    }, 2000)
+    }
   }
 
   const handleScheduleCall = () => {
@@ -53,6 +69,7 @@ export function PaymentModal({ packageName, packagePrice, priceAmount, children 
     setStep("terms")
     setTermsAccepted(false)
     setIsProcessing(false)
+    setError(null)
   }
 
   const handleOpenChange = (open: boolean) => {
@@ -148,6 +165,16 @@ export function PaymentModal({ packageName, packagePrice, priceAmount, children 
                   * 50% deposit required to commence work
                 </p>
               </div>
+              
+              {error && (
+                <div className="rounded-lg border border-red-200 bg-red-50 dark:bg-red-950 p-4 flex items-start gap-2">
+                  <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-red-800 dark:text-red-200">Payment Error</p>
+                    <p className="text-sm text-red-700 dark:text-red-300 mt-1">{error}</p>
+                  </div>
+                </div>
+              )}
               
               <div className="rounded-lg border p-4">
                 <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-4">
